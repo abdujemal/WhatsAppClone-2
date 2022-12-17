@@ -4,7 +4,7 @@ import './App.css'
 import {useGlobalContext} from './context'
 import Login from './components/login'
 import Api from './Api/firebase_service'
-import { Avatar, Box, Button, CircularProgress, colors, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material'
+import { Avatar, Box, Button, CircularProgress, Collapse, colors, IconButton, List, ListItem, ListItemAvatar, ListItemText, Paper, Slide, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
 import TopBar from './components/topbar'
 import ChatWindow from './components/chat_window'
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <Stack direction={'column'}  sx={{backgroundColor: '#1ebe71', height: '100vh'}}>
+      <Stack direction={'column'}  sx={{backgroundColor: '#1ebe71', height: '100vh', overflowY: 'hidden'}}>
         <TopBar/>
         <MobileSidebar/>
         <Stack direction={'row'} alignItems='end' sx={{height: '100vh', }}>
@@ -54,66 +54,84 @@ function App() {
             {myMenuIcon(LocalPhone, "Connections", false)}
             {myMenuIcon(DonutLarge, "Status", false)}
           </Stack>
-          {openContact?
-          <Stack  
-              sx={{
-                display: {xs: 'none', md: 'flex'},
-                height: '100%', 
-                backgroundColor: 'white',
-                width: '25%',
-                minWidth: "180px",
-                borderRadius: '20px 20px 0px 0px'
-              }}
-              >
-              <Stack direction={'row'} alignItems='center' justifyContent='space-between'>
-                <Typography ml={2} color={"#1ebe71"}>New Conversation</Typography>
-                <IconButton color='#1ebe71' onClick={(e)=>setOpenContact(false)}><Clear/></IconButton>
-              </Stack>
-              <List sx={{width: '100%'}}>
-                {
-                  contactLoading?
-                  <CircularProgress/>:
-                  contactList.map((item, key)=>(
-                    <Button key={key} sx={{width: '100%', textTransform: 'none'}} onClick={(e)=>{addNewChat(user, item);setOpenContact(false)}}>
-                      <Stack direction={'row'} width='100%' spacing={2} alignItems='center' justifyContent='flex-start'>
-                        <Avatar src={item.avatar}/>
-                        <Typography color={'black'} >{item.name}</Typography>
-                      </Stack>
-                    </Button>
-                  ))
-                }
-              </List>
-          </Stack>
-          :
-          <Stack 
-            alignItems='center'
+          <Box
             sx={{
               display: {xs: 'none', md: 'flex'},
-              height: '100%', 
               backgroundColor: 'white',
+              height: '100%', 
               width: '25%',
               minWidth: "180px",
-              borderRadius: '20px 20px 0px 0px'}}>
-            <List sx={{mt: 3, width: '100%'}}>
-                {
-                  chatsLoading?
-                  <CircularProgress/>:
-                  chatList.map((item, key)=>(
-                    <ChatListItem 
-                      key={key}
-                      data={item}
-                      active={activeChat?.chatId === item.chatId}
-                      onClick={()=>{setActiveChat(item)}}
-                    />
-                  ))
-                }
-            </List>
-            <Typography>You've reached the end.</Typography>
-            <Typography fontSize={11} sx={{color: '#1ebe71'}}>Add mode friends!</Typography>
-            <IconButton color='#1ebe71' onClick={(e)=>{setOpenContact(true);getContactList(user.id);}}><Add/></IconButton>
-            <Paper/>
-          </Stack>
-          }{
+              position: 'relative',
+              borderRadius: '20px 20px 0px 0px'
+            }}
+          >
+
+            {/* {openContact? */}
+            <Slide
+            direction='up'          
+            sx={{
+              position: 'absolute', 
+              zIndex: 100, 
+              height: '100%',
+              width: '25%',
+              minWidth: "220px",
+              backgroundColor: 'white',
+              borderRadius: '20px 20px 0px 0px'
+            }}
+            in={openContact}
+            >
+              <Stack  
+                  sx={{
+                    
+                  }}
+                  >
+                  <Stack direction={'row'} alignItems='center' justifyContent='space-between'>
+                    <Typography ml={2} color={"#1ebe71"}>New Conversation</Typography>
+                    <IconButton color='#1ebe71' onClick={(e)=>setOpenContact(false)}><Clear/></IconButton>
+                  </Stack>
+                  <List sx={{width: '100%'}}>
+                    {
+                      contactLoading?
+                      <CircularProgress/>:
+                      contactList.map((item, key)=>(
+                        <Button key={key} sx={{width: '100%', textTransform: 'none'}} onClick={(e)=>{addNewChat(user, item);setOpenContact(false)}}>
+                          <Stack direction={'row'} width='100%' spacing={2} alignItems='center' justifyContent='flex-start'>
+                            <Avatar src={item.avatar}/>
+                            <Typography color={'black'} >{item.name}</Typography>
+                          </Stack>
+                        </Button>
+                      ))
+                    }
+                  </List>
+              </Stack>
+            </Slide>
+            
+            <Stack 
+              alignItems='center'
+              width={"100%"}
+              >
+              <List sx={{mt: 3, width: '100%'}}>
+                  {
+                    chatsLoading?
+                    <CircularProgress/>:
+                    chatList.map((item, key)=>(
+                      <ChatListItem 
+                        key={key}
+                        data={item}
+                        active={activeChat?.chatId === item.chatId}
+                        onClick={()=>{setActiveChat(item)}}
+                      />
+                    ))
+                  }
+              </List>
+              <Typography>You've reached the end.</Typography>
+              <Typography fontSize={11} sx={{color: '#1ebe71'}}>Add mode friends!</Typography>
+              <IconButton color='#1ebe71' onClick={(e)=>{setOpenContact(true);getContactList(user.id);}}><Add/></IconButton>
+              <Paper/>
+            </Stack>
+          
+          </Box>
+          {
             activeChat !== null?
             <ChatWindow user={user} data={activeChat}/>:
             <ChatIntro/>
