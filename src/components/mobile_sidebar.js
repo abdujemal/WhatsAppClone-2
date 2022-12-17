@@ -9,16 +9,15 @@ function MobileSidebar() {
     const {showSidebar, setShowSidebar, setActiveChat, chatsLoading, chatList, activeChat, setOpenContact, openContact, getContactList, contactList, contactLoading, addNewChat, user} = useGlobalContext()
 
     return (
-        <Stack direction={'row'} sx={{display: {xs: 'flex', md: 'none'}, height: '100%', position: 'absolute', right: 0, top: 0, zIndex: 999}}>
+        <Stack direction={'row'} sx={{display: {xs: 'flex', md: 'none'}, height: '100%', position: 'absolute', right: showSidebar ? 0 : -100, top: 0, transition: 'right 1s', zIndex: 999}}>
             <Avatar sx={{backgroundColor: '#1ebe71', mt: 10, mr: 1}} onClick={()=>setShowSidebar(!showSidebar)}>
                 {showSidebar? <ArrowForwardIos sx={{color: 'white'}}/> 
                 :<ArrowBackIosNew sx={{color: 'white'}}/>}
             </Avatar>
-            {showSidebar &&
+            
             <Stack 
                 sx={{
-                    // transition: '',
-                    width: '100px', 
+                    width: '100px',
                     backgroundColor: 'white', 
                     borderTopLeftRadius: '10px', 
                     borderBottomLeftRadius: '10px'
@@ -61,7 +60,7 @@ function MobileSidebar() {
                 }
                 <IconButton color='#1ebe71' onClick={(e)=>{setOpenContact(true);getContactList(user.id);}}><Add/></IconButton>
                 </Stack>}
-            </Stack>}
+            </Stack>
         </Stack>
     )
 }
