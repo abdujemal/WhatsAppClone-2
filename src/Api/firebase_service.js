@@ -136,6 +136,8 @@ const Api =  {
         }
       }, 
       (error)=>{
+        setChatsLoading(false)
+        setChatList([]);
         console.log(error.message);
       });
 

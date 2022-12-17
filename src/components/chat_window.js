@@ -82,7 +82,7 @@ export default function ChatWindow({user, data}){
         backgroundRepeat: 'repeat',
       }}
     >
-      <Paper sx={{backgroundColor:'#1ebe71', borderRadius: 0}}>
+      <Paper sx={{backgroundColor:'#1ebe71', borderRadius: 0, position: 'sticky'}}>
         <Stack direction={'row'} justifyContent='space-between'>
           <Stack direction={'row'} alignItems='center' spacing={1} m={1.5}>
             <Avatar sx={{width: 30, height: 30}} src={data.image}/>
