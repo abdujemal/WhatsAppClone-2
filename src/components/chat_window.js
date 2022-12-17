@@ -166,6 +166,9 @@ export default function ChatWindow({user, data}){
                 />
               </Paper>
               <IconButton
+                sx={{
+                  zIndex: 1000
+                }}
                 onClick={handleSendClick}>
                 <Send sx={{color: 'grey'}}/>
               </IconButton>
