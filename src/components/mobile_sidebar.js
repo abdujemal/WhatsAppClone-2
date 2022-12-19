@@ -34,7 +34,7 @@ function MobileSidebar() {
                         <Typography color={'black'} fontSize={11}>{user.name}</Typography>
                     </Stack>
                     {openContact?
-                    <Stack sx={{mt: 3, width: '100%'}} alignItems='center'>
+                    <Stack sx={{mt: 1, width: '100%'}} alignItems='center'>
                         <IconButton color='#1ebe71' onClick={(e)=>{setOpenContact(false);}}><Clear/></IconButton>
                         {
                         contactLoading?
@@ -49,7 +49,7 @@ function MobileSidebar() {
                         ))
                         }
                     </Stack>:
-                    <Stack sx={{mt: 3, width: '100%'}} alignItems='center'>
+                    <Stack sx={{mt: 1, width: '100%'}} alignItems='center'>
                         
                         <Typography mb={1} fontWeight={19}>Chats</Typography>
                     {
