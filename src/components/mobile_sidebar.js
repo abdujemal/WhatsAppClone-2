@@ -10,7 +10,7 @@ function MobileSidebar() {
 
     return (
 
-        <Stack direction={'row'} sx={{display: {xs: 'flex', md: 'none'}, height: '100%', position: 'absolute', right: 0,  top: 0, zIndex: 999}}>
+        <Stack direction={'row'} sx={{display: {xs: 'flex', md: 'none'}, height: '100vh', position: 'absolute', right: 0,  top: 0, zIndex: 999}}>
             <Avatar sx={{backgroundColor: '#1ebe71', mt: 10, mr: 1}} onClick={()=>setShowSidebar(!showSidebar)}>
                 {showSidebar? <ArrowForwardIos sx={{color: 'white'}}/> 
                 :<ArrowBackIosNew sx={{color: 'white'}}/>}
