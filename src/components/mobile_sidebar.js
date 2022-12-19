@@ -46,6 +46,10 @@ function MobileSidebar() {
                         }
                     </Stack>:
                     <Stack sx={{mt: 3, width: '100%'}} alignItems='center'>
+                        <Stack mb={2} direction={'column'} width='100%' alignItems='center' justifyContent='flex-start'>
+                            <Avatar src={user.avatar}/>
+                            <Typography color={'black'} fontSize={11}>{user.name}</Typography>
+                        </Stack>
                         <Typography mb={1} fontWeight={19}>Chats</Typography>
                     {
                     chatsLoading?
