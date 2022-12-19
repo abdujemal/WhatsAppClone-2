@@ -80,11 +80,7 @@ function App() {
             }}
             in={openContact}
             >
-              <Stack  
-                  sx={{
-                    
-                  }}
-                  >
+              <Stack alignItems='center' width={"100%"}>
                   <Stack direction={'row'} alignItems='center' justifyContent='space-between'>
                     <Typography ml={2} color={"#1ebe71"}>New Conversation</Typography>
                     <IconButton color='#1ebe71' onClick={(e)=>setOpenContact(false)}><Clear/></IconButton>

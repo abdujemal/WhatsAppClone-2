@@ -86,7 +86,10 @@ export default function ChatWindow({user, data}){
         <Stack direction={'row'} justifyContent='space-between'>
           <Stack direction={'row'} alignItems='center' spacing={1} m={1.5}>
             <Avatar sx={{width: 30, height: 30}} src={data.image}/>
-            <Typography color='white' fontSize={13} fontWeight='bold'>{data.title}</Typography>
+            <Stack alignItems={'start'}>
+              <Typography color='white' fontSize={13} fontWeight='bold'>{data.title}</Typography>
+              <Typography color='whitesmoke' fontSize={9} fontWeight={400}>{data.title}</Typography>
+            </Stack>
           </Stack>
           <Stack direction={'row'}>
             <IconButton>

@@ -2,13 +2,13 @@ import { firebaseConfig } from "./firebase_config";
 import {getFirestore, collection, getDocs, setDoc, doc, getDoc, addDoc, updateDoc, FieldValue, arrayUnion, onSnapshot, Timestamp, serverTimestamp} from 'firebase/firestore';
 import {initializeApp} from 'firebase/app';
 import { getAuth } from "firebase/auth";
+import message from 'firebase/messaging'
 import {FacebookAuthProvider, signInWithPopup, GithubAuthProvider, GoogleAuthProvider} from 'firebase/auth';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const auth = getAuth();
-
 
 const Api =  {
     FacebookPopup: async () => {
@@ -140,27 +140,6 @@ const Api =  {
         setChatList([]);
         console.log(error.message);
       });
-
-      // return db.collection('users').doc(userId).onSnapshot(doc => {
-      //   if(doc.exists){
-      //     let data = doc.data();
-      //     if(data.chats){
-      //       let chats = [...data.chats];
-      //       chats.sort((a,b) => {
-      //         if(a.lastMessageDate === undefined){
-      //           return -1;
-      //         }
-      //         if(a.lastMessageDate.seconds < b.lastMessageDate.seconds){
-      //           return 1;
-      //         }else{
-      //           return -1;
-      //         }
-      //       });
-  
-      //       setChatList(chats);
-      //     }
-      //   }
-      // });
     },
     onChatContent: (chatId, setList, setUsers) => {
       console.log(chatId);
@@ -178,14 +157,6 @@ const Api =  {
       (error)=>{
         console.log(error.message);
       });
-
-      // return db.collection('chats').doc(chatId).onSnapshot(doc => {
-      //   if(doc.exists){
-      //     let data = doc.data();
-      //     setList(data.messages);
-      //     setUsers(data.users);
-      //   }
-      // })
     },
     sendMessage: async (chatData, userId, type, body, users) => {
       let now = new Date();
@@ -203,21 +174,18 @@ const Api =  {
   
       for (let i in users){
         let u = await getDoc(doc(collection(db, 'users'), users[i]));
-        // let u = await db.collection('users').doc(users[i]).get();
         let uData = u.data();
+        
         if(uData.chats){
           let chats = [...uData.chats];
           for(let e in chats){
             if(chats[e].chatId === chatData.chatId){
               chats[e].lastMessage = body;
               chats[e].lastMessageDate = now.getTime();
+              
             }
           }
           await updateDoc(doc(collection(db, 'users'), users[i]), {chats});
-  
-          // await db.collection('users').doc(users[i]).update({
-          //   chats
-          // })
         }
       }
     }
