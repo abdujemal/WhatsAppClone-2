@@ -88,7 +88,7 @@ export default function ChatWindow({user, data}){
             <Avatar sx={{width: 30, height: 30}} src={data.image}/>
             <Stack alignItems={'start'}>
               <Typography color='white' fontSize={13} fontWeight='bold'>{data.title}</Typography>
-              <Typography color='whitesmoke' fontSize={9} fontWeight={400}>{data.title}</Typography>
+              
             </Stack>
           </Stack>
           <Stack direction={'row'}>
