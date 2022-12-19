@@ -11,7 +11,7 @@ function MobileSidebar() {
     return (
 
         <Stack direction={'row'} sx={{display: {xs: 'flex', md: 'none'}, height: '100%', position: 'absolute', right: 0,  top: 0, zIndex: 999}}>
-            <Avatar sx={{backgroundColor: '#1ebe71', mt: 10,mb: 10, mr: 1}} onClick={()=>setShowSidebar(!showSidebar)}>
+            <Avatar sx={{backgroundColor: '#1ebe71', mt: 10, mr: 1}} onClick={()=>setShowSidebar(!showSidebar)}>
                 {showSidebar? <ArrowForwardIos sx={{color: 'white'}}/> 
                 :<ArrowBackIosNew sx={{color: 'white'}}/>}
             </Avatar>
@@ -29,10 +29,7 @@ function MobileSidebar() {
                         borderBottomLeftRadius: '10px'
                         }}
                     >
-                        <Stack mb={2} direction={'column'} width='100%' alignItems='center' justifyContent='flex-start'>
-                            <Avatar src={user.avatar}/>
-                            <Typography color={'black'} fontSize={11}>{user.name}</Typography>
-                        </Stack>
+                        
                     {openContact?
                     <Stack sx={{mt: 3, width: '100%'}} alignItems='center'>
                         <IconButton color='#1ebe71' onClick={(e)=>{setOpenContact(false);}}><Clear/></IconButton>
