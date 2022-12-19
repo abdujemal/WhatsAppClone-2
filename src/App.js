@@ -73,14 +73,15 @@ function App() {
               position: 'absolute', 
               zIndex: 100, 
               height: '100%',
-              width: '25%',
+              width: '100%',
               minWidth: "220px",
               backgroundColor: 'white',
               borderRadius: '20px 20px 0px 0px'
+              // alignItems='center' width={"100%"}
             }}
             in={openContact}
             >
-              <Stack alignItems='center' width={"100%"}>
+              <Stack >
                   <Stack direction={'row'} alignItems='center' justifyContent='space-between'>
                     <Typography ml={2} color={"#1ebe71"}>New Conversation</Typography>
                     <IconButton color='#1ebe71' onClick={(e)=>setOpenContact(false)}><Clear/></IconButton>
