@@ -165,7 +165,7 @@ export default function ChatWindow({user, data}){
                 }}>
                 <input
                   
-                  style={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
+                  style={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13, border: 'none', outlineWidth: '0px'}}
                   placeholder="Type a messege.."
                   inputProps={{ 'aria-label': 'text' }}
                   value={text}
