@@ -159,7 +159,10 @@ export default function ChatWindow({user, data}){
                   height: 30 
                 }}
               >
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e)=>{
+                  e.preventDefault();
+                  handleSendClick();
+                }}>
                 <input
                   
                   style={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
