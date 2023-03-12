@@ -11,7 +11,7 @@ import EmojiPicker from 'emoji-picker-react';
 // import MicIcon from '@material-ui/icons/Mic';
 
 import MessageItem from './messege_item';
-import { AppBar, Avatar, IconButton, Input, InputBase, List, Paper, Stack, Typography } from '@mui/material';
+import { AppBar, Avatar, IconButton, Input, InputBase, List, Paper, Stack, TextField, Typography } from '@mui/material';
 import { Close, EmojiEmotionsOutlined, Logout, LogoutRounded, MoreVert, Phone, Send } from '@mui/icons-material';
 import { useGlobalContext } from '../context';
 import { Box, width } from '@mui/system';
@@ -160,7 +160,7 @@ export default function ChatWindow({user, data}){
                 }}
               >
                 <form onSubmit={handleSubmit}>
-                <InputBase
+                <TextField
                   sx={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
                   placeholder="Type a messege.."
                   inputProps={{ 'aria-label': 'text' }}
