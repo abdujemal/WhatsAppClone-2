@@ -160,8 +160,9 @@ export default function ChatWindow({user, data}){
                 }}
               >
                 <form onSubmit={handleSubmit}>
-                <TextField
-                  sx={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
+                <input
+                  
+                  style={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
                   placeholder="Type a messege.."
                   inputProps={{ 'aria-label': 'text' }}
                   value={text}
