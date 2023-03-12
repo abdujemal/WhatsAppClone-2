@@ -159,14 +159,15 @@ export default function ChatWindow({user, data}){
                   height: 30 
                 }}
               >
+                <form onSubmit={handleSubmit}>
                 <InputBase
                   sx={{ ml: 1, flex: 1, backgroundColor: 'transparent', color: 'grey', fontSize: 13}}
                   placeholder="Type a messege.."
                   inputProps={{ 'aria-label': 'text' }}
                   value={text}
-                  onChange={(e)=>setText(e.target.value)}
-                  onSubmit={handleSubmit}
+                  onChange={(e)=>setText(e.target.value)}                  
                 />
+                </form>
               </Paper>
               <IconButton
                 sx={{
